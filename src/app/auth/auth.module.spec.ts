@@ -12,7 +12,7 @@ describe('AuthModule', () => {
     module = TestBed.inject(AuthModule);
   });
 
-  it('should create the module', () => {
+  it('should create a module', () => {
     expect(module).toBeTruthy();
   });
 });

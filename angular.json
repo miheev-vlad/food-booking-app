@@ -13,12 +13,13 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
+          "prefix": "fba",
           "style": "scss"
         }
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "fba",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
