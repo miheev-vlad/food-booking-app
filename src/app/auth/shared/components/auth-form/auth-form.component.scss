@@ -2,6 +2,14 @@
 
 form {
   padding: 16px;
+
+  .mat-input-element{
+    height: 17px;
+  }
+
+  mat-form-field {
+    margin-bottom: 8px;
+  }
 }
 
 button:hover {
