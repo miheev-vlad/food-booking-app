@@ -4,7 +4,10 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { AuthInputInterface } from 'src/app/auth/shared/types/authInput.interface';
-import { isSubmittingSelector } from 'src/app/auth/store/selectors';
+import {
+  backendErrorsSelector,
+  isSubmittingSelector,
+} from 'src/app/auth/store/selectors';
 import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 
 @Component({
@@ -16,6 +19,7 @@ export class AuthFormComponent implements OnInit {
   form: FormGroup;
 
   isSubmitting$: Observable<boolean>;
+  backendErrors$: Observable<string>;
 
   @Input('buttonName') buttonNameProps: string;
   // eslint-disable-next-line @angular-eslint/no-output-rename
@@ -34,6 +38,7 @@ export class AuthFormComponent implements OnInit {
 
   initializeValues(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+    this.backendErrors$ = this.store.pipe(select(backendErrorsSelector));
   }
 
   initializeForm(): void {

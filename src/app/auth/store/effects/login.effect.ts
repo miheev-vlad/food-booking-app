@@ -12,6 +12,7 @@ import {
   loginFailureAction,
 } from 'src/app/auth/store/actions/login.action';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
+import { getBackendErrorMessage } from 'src/app/shared/utils/handlers/getBackendErrorMessage.function';
 
 @Injectable()
 export class LoginEffect {
@@ -27,7 +28,9 @@ export class LoginEffect {
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
               loginFailureAction({
-                error: errorResponse.error.error.message,
+                error: getBackendErrorMessage(
+                  errorResponse.error.error.message
+                ),
               })
             );
           })

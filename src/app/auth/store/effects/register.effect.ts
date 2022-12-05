@@ -12,6 +12,7 @@ import {
   registerFailureAction,
 } from 'src/app/auth/store/actions/register.action';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
+import { getBackendErrorMessage } from 'src/app/shared/utils/handlers/getBackendErrorMessage.function';
 
 @Injectable()
 export class RegisterEffect {
@@ -27,7 +28,9 @@ export class RegisterEffect {
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
               registerFailureAction({
-                error: errorResponse.error.error.message,
+                error: getBackendErrorMessage(
+                  errorResponse.error.error.message
+                ),
               })
             );
           })
