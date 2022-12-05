@@ -1,3 +1,6 @@
+<fba-backend-error-messages
+  *ngIf="backendErrors$ | async as backendErrorMessage"
+  [backendErrors]="backendErrorMessage"></fba-backend-error-messages>
 <form
   fxLayoutAlign="stretch"
   fxLayout="column"
