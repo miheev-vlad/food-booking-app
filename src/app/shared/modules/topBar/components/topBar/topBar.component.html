@@ -1,0 +1,20 @@
+<mat-toolbar color="primary" class="top-bar">
+  <a [routerLink]="['/']"><span class="top-bar__brand">BookingFood</span></a>
+
+  <span class="top-bar__spacer"></span>
+  <button
+    *ngIf="isAuthenticated"
+    mat-icon-button
+    aria-label="logout icon"
+    type="button"
+    (click)="onLogout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    aria-label="login icon"
+    [routerLink]="['/auth']"
+    *ngIf="!isAuthenticated">
+    <mat-icon>login</mat-icon>
+  </button>
+</mat-toolbar>
