@@ -10,6 +10,7 @@ import {
   loginAction,
   loginSuccessAction,
   loginFailureAction,
+  logoutAction,
 } from 'src/app/auth/store/actions/login.action';
 
 const initialState: AuthStateInterface = {
@@ -64,6 +65,13 @@ const authReducers = createReducer(
       ...state,
       isSubmitting: false,
       backendError: action.error,
+    })
+  ),
+  on(
+    logoutAction,
+    (state): AuthStateInterface => ({
+      ...state,
+      currentUser: null,
     })
   )
 );

@@ -19,3 +19,11 @@ export const loginFailureAction = createAction(
   ActionTypes.LOGIN_FAILURE,
   props<{ error: BackendErrorType }>()
 );
+
+export const logoutAction = createAction(ActionTypes.LOGOUT);
+
+export const autoLoginAction = createAction(ActionTypes.AUTO_LOGIN);
+
+export const autoLoginFailureAction = createAction(
+  ActionTypes.AUTO_LOGIN_FAILURE
+);
