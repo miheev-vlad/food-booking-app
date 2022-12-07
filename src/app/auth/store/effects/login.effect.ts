@@ -10,9 +10,13 @@ import {
   loginAction,
   loginSuccessAction,
   loginFailureAction,
+  logoutAction,
+  autoLoginAction,
+  autoLoginFailureAction,
 } from 'src/app/auth/store/actions/login.action';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
 import { getBackendErrorMessage } from 'src/app/shared/utils/handlers/getBackendErrorMessage.function';
+import { PersistanceService } from 'src/app/shared/services/persistance.service';
 
 @Injectable()
 export class LoginEffect {
@@ -22,6 +26,11 @@ export class LoginEffect {
       switchMap(({ authRequest }) => {
         return this.authService.login(authRequest).pipe(
           map((currentUser: CurrentUserInterface) => {
+            this.persistanceService.set('currentUser', currentUser);
+            const expirationDuration =
+              new Date(currentUser.tokenExpirationDate).getTime() -
+              new Date().getTime();
+            this.authService.setLogoutTimer(expirationDuration);
             return loginSuccessAction({ currentUser });
           }),
 
@@ -39,6 +48,29 @@ export class LoginEffect {
     )
   );
 
+  autoLogin$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(autoLoginAction),
+      map(() => {
+        const currentUserData: CurrentUserInterface =
+          this.persistanceService.get('currentUser');
+        if (!currentUserData) {
+          return autoLoginFailureAction();
+        }
+
+        if (currentUserData.token) {
+          const expirationDuration =
+            new Date(currentUserData.tokenExpirationDate).getTime() -
+            new Date().getTime();
+          this.authService.setLogoutTimer(expirationDuration);
+          return loginSuccessAction({ currentUser: currentUserData });
+        }
+
+        return autoLoginFailureAction();
+      })
+    )
+  );
+
   redirectAfterLogin$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -50,9 +82,23 @@ export class LoginEffect {
     { dispatch: false }
   );
 
+  logout$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(logoutAction, autoLoginFailureAction),
+        tap(() => {
+          this.authService.clearLogoutTimer();
+          this.persistanceService.remove('currentUser');
+          this.router.navigateByUrl('/auth');
+        })
+      ),
+    { dispatch: false }
+  );
+
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private persistanceService: PersistanceService
   ) {}
 }
