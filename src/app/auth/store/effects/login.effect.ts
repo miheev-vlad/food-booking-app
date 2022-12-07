@@ -85,7 +85,7 @@ export class LoginEffect {
   logout$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(logoutAction, autoLoginFailureAction),
+        ofType(logoutAction),
         tap(() => {
           this.authService.clearLogoutTimer();
           this.persistanceService.remove('currentUser');
