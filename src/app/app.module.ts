@@ -5,13 +5,15 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AppComponent } from 'src/app/app.component';
 import { AuthModule } from 'src/app/auth/auth.module';
-import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { DashboardModule } from 'src/app/dashboard/dashboard.module';
+import { AuthInterceptor } from 'src/app/shared/services/auth-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,8 +33,15 @@ import { HttpClientModule } from '@angular/common/http';
     AuthModule,
     SharedModule,
     HttpClientModule,
+    DashboardModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

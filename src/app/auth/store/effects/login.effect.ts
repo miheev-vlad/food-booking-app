@@ -31,7 +31,7 @@ export class LoginEffect {
               new Date(currentUser.tokenExpirationDate).getTime() -
               new Date().getTime();
             this.authService.setLogoutTimer(expirationDuration);
-            return loginSuccessAction({ currentUser });
+            return loginSuccessAction({ currentUser, redirect: true });
           }),
 
           catchError((errorResponse: HttpErrorResponse) => {
@@ -63,7 +63,10 @@ export class LoginEffect {
             new Date(currentUserData.tokenExpirationDate).getTime() -
             new Date().getTime();
           this.authService.setLogoutTimer(expirationDuration);
-          return loginSuccessAction({ currentUser: currentUserData });
+          return loginSuccessAction({
+            currentUser: currentUserData,
+            redirect: false,
+          });
         }
 
         return autoLoginFailureAction();
@@ -75,8 +78,10 @@ export class LoginEffect {
     () =>
       this.actions$.pipe(
         ofType(loginSuccessAction),
-        tap(() => {
-          this.router.navigateByUrl('/');
+        tap(({ redirect }) => {
+          if (redirect) {
+            this.router.navigateByUrl('/');
+          }
         })
       ),
     { dispatch: false }

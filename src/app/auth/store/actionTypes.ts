@@ -10,4 +10,6 @@ export enum ActionTypes {
 
   AUTO_LOGIN = '[Auth] Auto Login',
   AUTO_LOGIN_FAILURE = '[Auth] Auto Login failure',
+
+  CLEAR_ERRORS = '[Auth] Clear errors',
 }

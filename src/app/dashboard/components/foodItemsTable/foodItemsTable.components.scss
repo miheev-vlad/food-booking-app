@@ -1,0 +1,22 @@
+.food-items-table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+
+  &__cell {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  &__image {
+    max-height: 40px;
+  }
+
+  &__button-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+

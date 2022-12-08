@@ -6,8 +6,8 @@ import { EnvironmentInterface } from 'src/environments/environment.interface';
 
 export const environment: EnvironmentInterface = {
   production: false,
-  Web_API_Key: 'AIzaSyDhQTdzcKEGwAVb_xiHwq3uC_kdpvrPYK8',
-  DB_URL: 'https://full-ng-course-default-rtdb.firebaseio.com',
+  Web_API_Key: 'AIzaSyAOo3hR_wn04fmo1D_5UOO_M4UmHVkXMgw ',
+  DB_URL: 'https://ng-recipe-book-6ae40-default-rtdb.firebaseio.com',
   Auth_URL: 'https://identitytoolkit.googleapis.com/v1',
 };
 

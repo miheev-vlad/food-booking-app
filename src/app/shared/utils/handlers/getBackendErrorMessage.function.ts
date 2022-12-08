@@ -1,4 +1,4 @@
-export const getBackendErrorMessage = (errorCode: string) => {
+export const getBackendErrorMessage = (errorCode: string): string => {
   switch (errorCode) {
     case 'EMAIL_EXISTS':
       return 'The email address is already in use by another account.';

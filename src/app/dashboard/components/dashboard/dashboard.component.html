@@ -1,0 +1,25 @@
+<div
+  class="dashboard"
+  *ngIf="(isLoading$ | async) === false; else loadingSpinner">
+  <div class="dashboard__add-button">
+    <button mat-raised-button color="primary">Add Food Item</button>
+  </div>
+  <div class="dashboard__search-input">
+    <mat-form-field class="dashboard__input-width">
+      <mat-label>Search food item...</mat-label>
+      <input type="text" matInput [(ngModel)]="searchStr" />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+  <fba-food-items-table
+    [foodItems]="
+      foodItems$ | async | searchFoodItem : searchStr
+    "></fba-food-items-table>
+</div>
+<ng-template #loadingSpinner>
+  <div class="loading-spinner-wrapper">
+    <div>
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</ng-template>

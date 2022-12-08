@@ -1,0 +1,94 @@
+<table
+  matSort
+  matSortActive="id"
+  matSortDirection="asc"
+  matSortDisableClear
+  (matSortChange)="sortFoodItems($event)"
+  mat-table
+  [dataSource]="foodItemsProps"
+  class="food-items-table">
+  <ng-container matColumnDef="id">
+    <th
+      mat-header-cell
+      mat-sort-header
+      *matHeaderCellDef
+      class="food-items-table__cell">
+      ID
+    </th>
+    <td mat-cell *matCellDef="let element" class="food-items-table__cell">
+      {{ element.id }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th
+      mat-header-cell
+      mat-sort-header
+      *matHeaderCellDef
+      class="food-items-table__cell">
+      Name
+    </th>
+    <td mat-cell *matCellDef="let element" class="food-items-table__cell">
+      {{ element.name }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef class="food-items-table__cell">
+      Description
+    </th>
+    <td mat-cell *matCellDef="let element" class="food-items-table__cell">
+      {{ element.description }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef class="food-items-table__cell">
+      Image
+    </th>
+    <td mat-cell *matCellDef="let element" class="food-items-table__cell">
+      <img class="food-items-table__image" [src]="element.imagePath" />
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="ingredients">
+    <th
+      mat-header-cell
+      mat-sort-header
+      *matHeaderCellDef
+      class="food-items-table__cell">
+      Ingredients
+    </th>
+    <td mat-cell *matCellDef="let element" class="food-items-table__cell">
+      {{ element.ingredients.length }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef class="food-items-table__cell">
+      Actions
+    </th>
+    <td mat-cell *matCellDef="let element" class="food-items-table__cell">
+      <div class="food-items-table__button-container">
+        <div class="food-items-table__button-container__button-item">
+          <button mat-mini-fab color="basic">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <div class="food-items-table__button-container__button-item">
+          <button mat-mini-fab color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the search input...</td>
+  </tr>
+</table>

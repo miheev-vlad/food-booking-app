@@ -4,8 +4,10 @@ import { Subscription } from 'rxjs';
 
 import { logoutAction } from 'src/app/auth/store/actions/login.action';
 import { currentUserSelector } from 'src/app/auth/store/selectors';
+import { ConfigService } from 'src/app/shared/services/config.service';
 import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
+import { getEmailName } from 'src/app/shared/utils/handlers/getEmailName.function';
 
 @Component({
   selector: 'fba-top-bar',
@@ -14,12 +16,22 @@ import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface
 })
 export class TopBarComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
+  isAdmin = false;
+  adminEmailName: string;
   private authSub: Subscription;
 
-  constructor(private store: Store<AppStateInterface>) {}
+  constructor(
+    private store: Store<AppStateInterface>,
+    private configService: ConfigService
+  ) {}
 
   ngOnInit(): void {
+    this.initializeValues();
     this.initializeSub();
+  }
+
+  private initializeValues(): void {
+    this.adminEmailName = this.configService.getOption('forbiddenEmail');
   }
 
   private initializeSub(): void {
@@ -27,6 +39,10 @@ export class TopBarComponent implements OnInit, OnDestroy {
       .pipe(select(currentUserSelector))
       .subscribe((currentUser: CurrentUserInterface) => {
         this.isAuthenticated = !!currentUser;
+        if (currentUser) {
+          this.isAdmin =
+            getEmailName(currentUser.email) === this.adminEmailName;
+        }
       });
   }
 
