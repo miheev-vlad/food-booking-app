@@ -12,7 +12,7 @@ export const loginAction = createAction(
 
 export const loginSuccessAction = createAction(
   ActionTypes.LOGIN_SUCCESS,
-  props<{ currentUser: CurrentUserInterface }>()
+  props<{ currentUser: CurrentUserInterface; redirect: boolean }>()
 );
 
 export const loginFailureAction = createAction(

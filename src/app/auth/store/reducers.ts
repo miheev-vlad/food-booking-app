@@ -12,6 +12,7 @@ import {
   loginFailureAction,
   logoutAction,
 } from 'src/app/auth/store/actions/login.action';
+import { clearErrorsAction } from 'src/app/auth/store/actions/clearErrors.action';
 
 const initialState: AuthStateInterface = {
   isSubmitting: false,
@@ -34,6 +35,7 @@ const authReducers = createReducer(
       ...state,
       isSubmitting: false,
       currentUser: action.currentUser,
+      backendError: null,
     })
   ),
   on(
@@ -57,6 +59,7 @@ const authReducers = createReducer(
       ...state,
       isSubmitting: false,
       currentUser: action.currentUser,
+      backendError: null,
     })
   ),
   on(
@@ -72,6 +75,14 @@ const authReducers = createReducer(
     (state): AuthStateInterface => ({
       ...state,
       currentUser: null,
+      backendError: null,
+    })
+  ),
+  on(
+    clearErrorsAction,
+    (state): AuthStateInterface => ({
+      ...state,
+      backendError: null,
     })
   )
 );

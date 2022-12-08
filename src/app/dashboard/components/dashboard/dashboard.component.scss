@@ -1,0 +1,23 @@
+.dashboard {
+  padding: 16px;
+
+  &__add-button {
+    margin-bottom: 20px;
+  }
+
+  &__search-input {
+    margin-bottom: 20px;
+  }
+
+  &__input-width {
+    width: 50%;
+  }
+
+}
+
+.loading-spinner-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
