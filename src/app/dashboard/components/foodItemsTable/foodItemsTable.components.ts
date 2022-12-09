@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Sort } from '@angular/material/sort';
+
 import { FoodItemInterface } from 'src/app/shared/types/foodItem.interface';
 
 @Component({

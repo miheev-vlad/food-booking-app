@@ -1,1 +1,110 @@
-<p>Food Item Manage Form</p>
+<div class="food-item-manage">
+  <mat-card>
+    <mat-card-content>
+      <h2>
+        {{ isEditMode ? 'Edit Food Item' : 'Create Food Item' }}
+      </h2>
+
+      <div class="food-item-manage__delete_button" *ngIf="isEditMode">
+        <button
+          mat-fab
+          color="warn"
+          type="button"
+          (click)="onOpenDialog(foodItemName.value)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <form
+        fxLayoutAlign="stretch"
+        fxLayout="column"
+        class="food-item-manage__form"
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="name" #foodItemName />
+          <mat-error *ngIf="form.get('name').hasError('required')">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+          <mat-error *ngIf="form.get('description').hasError('required')">
+            Description is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Image URL</mat-label>
+          <input matInput type="text" formControlName="imagePath" #imagePath />
+          <mat-error *ngIf="form.get('imagePath').hasError('required')">
+            Image URL is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="food-item-manage__image-wrapper">
+          <img
+            [src]="imagePath.value"
+            class="food-item-manage__image-responsive"
+            *ngIf="imagePath.value; else imagePreloadTxt" />
+          <ng-template #imagePreloadTxt>
+            <p>Preload image...</p>
+          </ng-template>
+        </div>
+
+        <div
+          class="food-item-manage__ingredients-wrapper"
+          formArrayName="ingredients">
+          <div
+            class="food-item-manage__ingredients"
+            *ngFor="let ingredientCtrl of ingredientsControls; let i = index"
+            [formGroupName]="i">
+            <mat-form-field class="food-item-manage__ingredients-name">
+              <mat-label>Name</mat-label>
+              <input matInput type="text" formControlName="name" />
+              <mat-error
+                *ngIf="ingredientsControls[i].get('name').hasError('required')">
+                Name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="food-item-manage__ingredients-amount">
+              <mat-label>Amount</mat-label>
+              <input matInput type="number" formControlName="amount" />
+              <mat-error
+                *ngIf="
+                  ingredientsControls[i].get('amount').hasError('required')
+                ">
+                Amount is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <button
+              mat-icon-button
+              type="button"
+              (click)="onDeleteIngredient(i)">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </div>
+
+          <button mat-raised-button type="button" (click)="onAddIngredient()">
+            Add Ingredient
+          </button>
+        </div>
+
+        <div class="food-item-manage__button">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="form.invalid || (isSubmitting$ | async)">
+            {{ isEditMode ? 'Save' : 'Create' }}
+          </button>
+        </div>
+      </form></mat-card-content
+    >
+  </mat-card>
+</div>

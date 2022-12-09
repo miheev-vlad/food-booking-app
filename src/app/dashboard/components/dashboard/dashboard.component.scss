@@ -1,5 +1,7 @@
+@use '@angular/material' as mat;
+
 .dashboard {
-  padding: 16px;
+  padding:  20px 16px 16px 16px;
 
   &__add-button {
     margin-bottom: 20px;
@@ -21,3 +23,9 @@
   justify-content: center;
   padding-top: 40px;
 }
+
+button:hover {
+  @include mat.elevation(8);
+  transition-delay: 0.2s;
+}
+
