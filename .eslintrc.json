@@ -36,7 +36,7 @@
         "@angular-eslint/no-input-rename": [
           "error",
           {
-            "allowedNames": ["buttonName", "backendErrors", "formMode", "foodItems"]
+            "allowedNames": ["buttonName", "backendErrors", "formMode", "foodItems", "foodItemName"]
           }
         ]
       }

@@ -1,0 +1,54 @@
+@use '@angular/material' as mat;
+
+.food-item-manage {
+    position: relative;
+    margin: 0 auto;
+    width: 70%;
+    margin-top: 30px;
+    padding-bottom: 30px;
+
+    &__button {
+        margin: 0 auto;
+    }
+
+    &__ingredients {
+        width: 100%;
+    }
+
+    &__ingredients-name {
+        margin-right: 12px;
+        width: 50%;
+    }
+
+    &__image-wrapper {
+        width: 300px;
+        border: 1px solid var(--grey-0);
+        border-radius: 5px;
+        margin-bottom: 12px;
+        padding: 5px;
+
+        p {
+            margin-bottom: 0;
+            color: var(--grey-1);
+        }
+    }
+
+    &__ingredients-wrapper {
+        margin-top: 8px;
+    }
+
+    &__image-responsive {
+        width: 100%;
+    }
+
+    &__delete_button {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+    }
+}
+
+button:hover {
+    @include mat.elevation(8);
+    transition-delay: 0.2s;
+}

@@ -2,7 +2,12 @@
   class="dashboard"
   *ngIf="(isLoading$ | async) === false; else loadingSpinner">
   <div class="dashboard__add-button">
-    <button mat-raised-button color="primary">Add Food Item</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/fooditem', 'create']">
+      Add Food Item
+    </button>
   </div>
   <div class="dashboard__search-input">
     <mat-form-field class="dashboard__input-width">

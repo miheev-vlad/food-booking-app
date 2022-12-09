@@ -5,9 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BackendErrorMessagesModule } from 'src/app/shared/modules/backendErrorMessages/backendErrorMessages.module';
 import { TopBarModule } from 'src/app/shared/modules/topBar/topBar.module';
 import { SharedUiModule } from 'src/app/shared/shared-ui/shared-ui.module';
-import { SearchFoodItemPipe } from './pipes/searchFoodItem.pipe';
+import { SearchFoodItemPipe } from 'src/app/shared/pipes/searchFoodItem.pipe';
+import { TruncateTextPipe } from 'src/app/shared/pipes/truncateText.pipe';
 
 @NgModule({
+  declarations: [SearchFoodItemPipe, TruncateTextPipe],
   imports: [
     CommonModule,
     SharedUiModule,
@@ -23,7 +25,7 @@ import { SearchFoodItemPipe } from './pipes/searchFoodItem.pipe';
     BackendErrorMessagesModule,
     TopBarModule,
     SearchFoodItemPipe,
+    TruncateTextPipe,
   ],
-  declarations: [SearchFoodItemPipe],
 })
 export class SharedModule {}
