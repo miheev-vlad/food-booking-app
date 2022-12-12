@@ -21,14 +21,11 @@
         style="margin-bottom: 16px"
         *ngIf="foodItem.ingredients.length">
         <mat-expansion-panel-header>
-          <mat-panel-title> List of ingredients </mat-panel-title>
+          <mat-panel-title> Ingredients </mat-panel-title>
           <mat-panel-description>
             {{ foodItem.ingredients.length }} total
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-list-option *ngFor="let ingredient of foodItem.ingredients">
-          {{ ingredient.name }}
-        </mat-list-option>
         <mat-list>
           <mat-list-item *ngFor="let ingredient of foodItem.ingredients"
             ><i
