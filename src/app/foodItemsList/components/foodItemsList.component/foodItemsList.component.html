@@ -1,0 +1,21 @@
+<div *ngIf="foodItems$ | async as foodItems; else loadingSpinner">
+  <div class="food-items-screen">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div
+        [fxFlex]="100 / gridColumns + '%'"
+        fxFlex.xs="100%"
+        fxFlex.sm="33%"
+        *ngFor="let foodItem of foodItems">
+        <fba-food-item-card [foodItem]="foodItem"></fba-food-item-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingSpinner>
+  <div class="loading-spinner-wrapper">
+    <div>
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</ng-template>

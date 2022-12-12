@@ -13,6 +13,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   imports: [CommonModule],
@@ -29,6 +34,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatProgressSpinnerModule,
     MatSortModule,
     MatDialogModule,
+    MatGridListModule,
+    MatSliderModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatListModule,
   ],
 })
 export class SharedUiModule {}

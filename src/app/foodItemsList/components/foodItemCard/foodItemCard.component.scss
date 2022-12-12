@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+
+.food-item {
+    &__image {
+      height: 250px;
+      object-fit: cover;
+    }
+
+    &__description {
+        height: 60px;
+    }
+
+    &__add-to-shopping-card-btn:hover {
+        opacity: 0.8;
+    }
+}
+

@@ -14,7 +14,8 @@ import { AuthModule } from 'src/app/auth/auth.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DashboardModule } from 'src/app/dashboard/dashboard.module';
 import { AuthInterceptor } from 'src/app/shared/services/auth-interceptor.service';
-import { FoodItemManageModule } from './foodItemManage/foodItemManage.module';
+import { FoodItemManageModule } from 'src/app/foodItemManage/foodItemManage.module';
+import { FoodItemsListModule } from 'src/app/foodItemsList/foodItemsList.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +37,7 @@ import { FoodItemManageModule } from './foodItemManage/foodItemManage.module';
     HttpClientModule,
     DashboardModule,
     FoodItemManageModule,
+    FoodItemsListModule,
   ],
   providers: [
     {
