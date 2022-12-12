@@ -1,0 +1,25 @@
+<mat-card class="mat-elevation-z4">
+  <mat-card-header>
+    <mat-card-title>{{ foodItemProps.name }}</mat-card-title>
+  </mat-card-header>
+  <img
+    mat-card-image
+    class="food-item__image"
+    [src]="foodItemProps.imagePath" />
+  <mat-card-content>
+    <p class="food-item__description">
+      {{ foodItemProps.description | truncateText : 100 }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button
+      mat-button
+      type="button"
+      [routerLink]="['fooditem', foodItemProps.id, 'details']">
+      DETAILS
+    </button>
+    <button mat-fab color="accent" class="food-item__add-to-shopping-card-btn">
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

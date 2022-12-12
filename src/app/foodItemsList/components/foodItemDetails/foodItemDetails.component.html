@@ -1,0 +1,56 @@
+<div
+  class="food-item-details-screen"
+  *ngIf="(isLoading$ | async) === false; else loadingSpinner">
+  <mat-card>
+    <mat-card-subtitle [routerLink]="['/']" style="cursor: pointer"
+      >Go Back</mat-card-subtitle
+    >
+    <mat-card-header>
+      <mat-card-title>{{ foodItem.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <img
+        mat-card-xl-image
+        [src]="foodItem.imagePath"
+        style="margin-bottom: 16px"
+        class="details-image" />
+      <p>{{ foodItem.description }}</p>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+        style="margin-bottom: 16px"
+        *ngIf="foodItem.ingredients.length">
+        <mat-expansion-panel-header>
+          <mat-panel-title> List of ingredients </mat-panel-title>
+          <mat-panel-description>
+            {{ foodItem.ingredients.length }} total
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list-option *ngFor="let ingredient of foodItem.ingredients">
+          {{ ingredient.name }}
+        </mat-list-option>
+        <mat-list>
+          <mat-list-item *ngFor="let ingredient of foodItem.ingredients"
+            ><i
+              >{{ ingredient.name }}&nbsp;&nbsp;<strong>{{
+                ingredient.amount
+              }}</strong></i
+            ></mat-list-item
+          >
+        </mat-list>
+      </mat-expansion-panel>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent">ADD TO CART</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<ng-template #loadingSpinner>
+  <div class="loading-spinner-wrapper">
+    <div>
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</ng-template>
