@@ -3,16 +3,23 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { FoodItemsListComponent } from 'src/app/foodItemsList/components/foodItemsList.component/foodItemsList.component';
 import { FoodItemDetailsComponent } from 'src/app/foodItemsList/components/foodItemDetails/foodItemDetails.component';
+import { AuthGuard } from 'src/app/shared/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     component: FoodItemsListComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'fooditem/:id/details',
     component: FoodItemDetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: '**',
+    redirectTo: '/',
   },
 ];
 
