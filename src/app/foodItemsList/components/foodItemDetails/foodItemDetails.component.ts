@@ -2,14 +2,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
+
 import { getFoodItemAction } from 'src/app/foodItemManage/store/actions/getFoodItem.action';
 import {
   foodItemSelector,
   isLoadingSelector,
 } from 'src/app/foodItemManage/store/selectors';
 import { AppStateInterface } from 'src/app/shared/types/appState.interface';
-
 import { FoodItemInterface } from 'src/app/shared/types/foodItem.interface';
+import { addItemAction } from 'src/app/shoppingCart/store/actions/shoppingCart.actions';
+import { ShoppingItemInterface } from 'src/app/shoppingCart/types/shoppingItem.interface';
 
 @Component({
   selector: 'fba-foo-item-details',
@@ -53,5 +55,14 @@ export class FoodItemDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.foodItemSub.unsubscribe();
+  }
+
+  onAddToCart(): void {
+    const shoppingItem: ShoppingItemInterface = {
+      ...this.foodItem,
+      quantity: 1,
+      cost: this.foodItem.price,
+    };
+    this.store.dispatch(addItemAction({ shoppingItem }));
   }
 }

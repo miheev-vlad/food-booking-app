@@ -7,6 +7,9 @@
     >
     <mat-card-header>
       <mat-card-title>{{ foodItem.name }}</mat-card-title>
+      <mat-card-subtitle
+        ><strong>{{ foodItem.price | currency }}</strong></mat-card-subtitle
+      >
     </mat-card-header>
     <mat-card-content>
       <img
@@ -39,7 +42,13 @@
       <mat-divider></mat-divider>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="accent">ADD TO CART</button>
+      <button
+        mat-raised-button
+        color="accent"
+        type="button"
+        (click)="onAddToCart()">
+        ADD TO CART
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

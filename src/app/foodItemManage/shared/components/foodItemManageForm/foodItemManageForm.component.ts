@@ -75,6 +75,7 @@ export class FoodItemManageFormComponent implements OnInit, OnDestroy {
 
   initializeForm(): void {
     let foodItemName = '';
+    let foodItemPrice = null;
     let foodItemImagePath = '';
     let foodItemDescription = '';
     let foodItemIngredients = new FormArray([]);
@@ -87,6 +88,7 @@ export class FoodItemManageFormComponent implements OnInit, OnDestroy {
             foodItemName = foodItem.name;
             foodItemImagePath = foodItem.imagePath;
             foodItemDescription = foodItem.description;
+            foodItemPrice = foodItem.price;
             if (foodItem['ingredients']) {
               for (let ingredient of foodItem.ingredients) {
                 foodItemIngredients.push(
@@ -108,6 +110,7 @@ export class FoodItemManageFormComponent implements OnInit, OnDestroy {
       name: [foodItemName, [Validators.required]],
       description: [foodItemDescription, [Validators.required]],
       imagePath: [foodItemImagePath, [Validators.required]],
+      price: [foodItemPrice, [Validators.required]],
       ingredients: foodItemIngredients,
     });
   }

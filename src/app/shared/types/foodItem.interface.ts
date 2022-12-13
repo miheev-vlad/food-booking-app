@@ -4,4 +4,5 @@ export interface FoodItemInterface {
   description: string;
   imagePath: string;
   ingredients: any[];
+  price?: number;
 }

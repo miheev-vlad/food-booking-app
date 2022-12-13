@@ -1,0 +1,23 @@
+.shopping-cart {
+    &__items-quantity {
+        width: 10%;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    &__items-cost {
+        width: 20%;
+    }
+
+    &__items-name {
+        width: 50%;
+    }
+
+    &__item-delete {
+        width: 5%;
+    }
+
+    .mat-input-element:disabled {
+        color: var(--black-0)
+    }
+}
