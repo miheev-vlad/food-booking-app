@@ -1,0 +1,60 @@
+<mat-card class="shopping-cart">
+  <mat-card-header>
+    <mat-card-title>Shopping Cart</mat-card-title>
+    <mat-card-subtitle
+      >{{ (shoppingItems$ | async).length }} items</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content *ngFor="let shoppingItem of shoppingItems$ | async">
+    <div class="shopping-cart__items">
+      <mat-form-field class="shopping-cart__items-name">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" disabled [value]="shoppingItem.name" />
+      </mat-form-field>
+
+      <mat-form-field class="shopping-cart__items-quantity">
+        <mat-label>Quantity</mat-label>
+        <input
+          matInput
+          type="number"
+          min="1"
+          #itemQuantityInput
+          [value]="shoppingItem.quantity"
+          (change)="
+            onUpdateItem(
+              shoppingItem.id,
+              itemQuantityInput.value,
+              itemCostInput.value
+            )
+          " />
+      </mat-form-field>
+
+      <mat-form-field class="shopping-cart__items-cost">
+        <mat-label>Cost</mat-label>
+        <input
+          matInput
+          type="number"
+          disabled
+          [value]="shoppingItem.price * itemQuantityInput.value"
+          #itemCostInput />
+        <span matSuffix>$</span>
+      </mat-form-field>
+
+      <button
+        mat-icon-button
+        type="shopping-cart__item-delete"
+        (click)="onDeleteItem(shoppingItem.id)">
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-button
+      type="button"
+      (click)="onCheckout()"
+      [disabled]="(shoppingItems$ | async).length === 0">
+      CHECKOUT
+    </button>
+  </mat-card-actions>
+</mat-card>

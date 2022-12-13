@@ -1,6 +1,9 @@
 <mat-card class="mat-elevation-z4">
   <mat-card-header>
     <mat-card-title>{{ foodItemProps.name }}</mat-card-title>
+    <mat-card-subtitle
+      ><strong>{{ foodItemProps.price | currency }}</strong></mat-card-subtitle
+    >
   </mat-card-header>
   <img
     mat-card-image
@@ -18,7 +21,12 @@
       [routerLink]="['fooditem', foodItemProps.id, 'details']">
       DETAILS
     </button>
-    <button mat-fab color="accent" class="food-item__add-to-shopping-card-btn">
+    <button
+      mat-fab
+      color="accent"
+      class="food-item__add-to-shopping-card-btn"
+      type="button"
+      (click)="onAddToCart()">
       <mat-icon>add_shopping_cart</mat-icon>
     </button>
   </mat-card-actions>

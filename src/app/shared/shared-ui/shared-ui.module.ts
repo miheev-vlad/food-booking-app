@@ -18,6 +18,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [CommonModule],
@@ -39,6 +41,8 @@ import { MatListModule } from '@angular/material/list';
     MatDividerModule,
     MatExpansionModule,
     MatListModule,
+    MatBadgeModule,
+    MatSnackBarModule,
   ],
 })
 export class SharedUiModule {}

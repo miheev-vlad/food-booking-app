@@ -13,6 +13,7 @@ export class FoodItemsTableComponent {
     'id',
     'name',
     'description',
+    'price',
     'image',
     'ingredients',
     'actions',
@@ -32,6 +33,8 @@ export class FoodItemsTableComponent {
       switch (sort.active) {
         case 'id':
           return this.compare(a.id, b.id, isAsc);
+        case 'price':
+          return this.compare(a.price, b.price, isAsc);
         case 'name':
           return this.compare(a.name, b.name, isAsc);
         case 'ingredients':

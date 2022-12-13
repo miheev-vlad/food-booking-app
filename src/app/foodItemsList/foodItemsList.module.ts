@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FoodItemsListRoutingModule } from 'src/app/foodItemsList/foodItemsList-routing.module';
-import { FoodItemsListComponent } from 'src/app/foodItemsList/components/foodItemsList.component/foodItemsList.component';
+import { FoodItemsListComponent } from 'src/app/foodItemsList/components/foodItemsList/foodItemsList.component';
 import { FoodItemCardComponent } from 'src/app/foodItemsList/components/foodItemCard/foodItemCard.component';
 import { FoodItemDetailsComponent } from 'src/app/foodItemsList/components/foodItemDetails/foodItemDetails.component';
 
@@ -14,5 +14,6 @@ import { FoodItemDetailsComponent } from 'src/app/foodItemsList/components/foodI
     FoodItemCardComponent,
     FoodItemDetailsComponent,
   ],
+  exports: [FoodItemsListComponent],
 })
 export class FoodItemsListModule {}
